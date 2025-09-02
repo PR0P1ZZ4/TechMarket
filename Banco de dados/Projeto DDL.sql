@@ -20,6 +20,16 @@ insert into clinica.medico(nome, especialidade, crm) values
 -- SELECT <quais_colunas> FROM <schema.tabela>
 select * from clinica.medico;
 
+insert into ecommerce.cliente (nome_completo, email, senha, telefone, data_cadastro, cpf) values
+('Samuel','samsantos1508@gmail.com','samuel1231sasas',11912341234,'2004-08-15',12312312344)
+select * from ecommerce.cliente;
+
+insert into ecommerce.pedido (data_pedido,valor_total,status) values
+('2023-09-23',2340.40,'entregue'),
+('2024-09-23',234.40,'entregue'),
+('2025-01-23',34.40,'entregue')
+
+select * from ecommerce.pedido;
 
 insert into clinica.paciente(nome, cpf, idade, data_nascimento) values 
 ('Samuel', '12312312345', 21, '2004-08-15'),
@@ -45,3 +55,23 @@ where valor > 500 and valor < 1000;
 
 delete from clinica.medico
 where especialidade = 'Ortopedia';
+
+select 
+cs.data,
+cs.valor,
+med.nome
+from clinica.consulta as cs
+join 
+clinica.medico as med
+on cs.id_medico = med.id_medico
+
+select
+pd.id_pedido,
+cl.nome_completo
+
+from ecommerce.pedido as pd
+join ecommerce.cliente as cl
+on pd.id_cliente = cl.id_cliente
+
+select
+ecommerce.id_pedido
