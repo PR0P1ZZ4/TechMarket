@@ -1,8 +1,8 @@
-package service;
+package br.com.Ecommerce.api.service;
 
-import model.Cliente;
+import br.com.Ecommerce.api.model.Cliente;
 import org.springframework.stereotype.Service;
-import repository.ClienteRepository;
+import br.com.Ecommerce.api.repository.ClienteRepository;
 
 import java.util.List;
 

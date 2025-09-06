@@ -1,4 +1,4 @@
-package model;
+package br.com.Ecommerce.api.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -9,8 +9,10 @@ import lombok.Setter;
 @Entity
 @Table(name = "item_do_pedido", schema = "ecommerce")
 public class ItemDoPedido {
-    @Column(name = "id_item")
-    private Integer idItem;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_item", nullable = false)
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_produto")

@@ -1,4 +1,4 @@
-package model;
+package br.com.Ecommerce.api.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

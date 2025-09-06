@@ -1,6 +1,6 @@
-package repository;
+package br.com.Ecommerce.api.repository;
 
-import model.Cliente;
+import br.com.Ecommerce.api.model.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
