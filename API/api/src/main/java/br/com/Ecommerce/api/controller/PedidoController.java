@@ -3,9 +3,7 @@ package br.com.Ecommerce.api.controller;
 import br.com.Ecommerce.api.model.Pedido;
 import br.com.Ecommerce.api.service.PedidoService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +23,10 @@ public class PedidoController {
         return ResponseEntity.ok(pedidos);
 
     }
+@PostMapping
+public ResponseEntity<Pedido> salvarPedido(@RequestBody Pedido pedido) {
+        pedidoService.cadastrarPedido(pedido);
+        return ResponseEntity.ok(pedido);
 
+}
 }

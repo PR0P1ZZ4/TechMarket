@@ -5,9 +5,7 @@ import br.com.Ecommerce.api.model.Cliente;
 import br.com.Ecommerce.api.model.Produto;
 import br.com.Ecommerce.api.service.ProdutoService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.parser.Entity;
 import java.util.ArrayList;
@@ -32,7 +30,13 @@ public class ProdutoController {
 
         return ResponseEntity.ok(produtos);
     }
+@PostMapping
+    public ResponseEntity<Produto> CadastrarProduto(@RequestBody Produto produto){
+        produtoService.cadastrarProduto(produto);
+        return ResponseEntity.ok(produto);
 
+
+}
 
 
 }
