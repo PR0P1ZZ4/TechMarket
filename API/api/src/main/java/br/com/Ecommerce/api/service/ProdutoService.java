@@ -29,4 +29,15 @@ public Produto cadastrarProduto (Produto pd) {
 public Produto buscarPorId(int id) {
         return this.produtoRepository.findById(id).orElse(null);
 }
+
+public Produto deletarProdutoPorId(int id) {
+        Produto pd = buscarPorId(id);
+    if (pd == null) {
+        return null;
+    }
+
+    produtoRepository.delete(pd);
+    return pd;
+    }
 }
+
