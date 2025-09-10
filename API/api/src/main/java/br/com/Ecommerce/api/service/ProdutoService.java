@@ -26,5 +26,7 @@ public Produto cadastrarProduto (Produto pd) {
         return this.produtoRepository.save(pd);
 
 }
-
+public Produto buscarPorId(int id) {
+        return this.produtoRepository.findById(id).orElse(null);
+}
 }

@@ -32,7 +32,22 @@ public class ClienteService {
         return clienteRepository.save(cl);
 
     }
+    // buscar por id
+    public Cliente buscarPorId(int id) {
+        return this.clienteRepository.findById(id).orElse(null);
+    }
 
-
+    public Cliente deletarCliente(int id) {
+        // 1. verifico se o cliente existe
+        // reutilizei o metodo buscar por isso sempre fazer ele primeiro
+        Cliente cl = buscarPorId(id);
+        // 2. se nao existir retorno null
+        if (cl == null) {
+            return null;
+        }
+        // 3. se existir excluo
+        clienteRepository.delete(cl);
+        return cl;
+    }
 
 }

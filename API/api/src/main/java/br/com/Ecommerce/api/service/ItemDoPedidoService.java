@@ -15,10 +15,12 @@ public class ItemDoPedidoService {
         this.itemDoPedidoRepository = itemDoPedidoRepository;
     }
 
-    public List<ItemDoPedido> findAll() {
-        return this.itemDoPedidoRepository.findAll();
+    public List<ItemDoPedido> ListarTodos() {
+        return (List<ItemDoPedido>) this.itemDoPedidoRepository.findAll();
 
     }
-
+    public ItemDoPedido cadastrarItemDoPedido (ItemDoPedido pd) {
+        return this.itemDoPedidoRepository.save(pd);
+    }
 
 }

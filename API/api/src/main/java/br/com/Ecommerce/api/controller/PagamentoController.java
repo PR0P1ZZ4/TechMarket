@@ -14,7 +14,7 @@ import java.util.List;
 public class PagamentoController {
     private final PagamentoService pagamentoService;
 
-    public PagamentoController(PagamentoService pagamentoService, ClienteService clienteService) {
+    public PagamentoController(PagamentoService pagamentoService) {
         this.pagamentoService = pagamentoService;
     }
 

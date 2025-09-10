@@ -31,12 +31,19 @@ public class ProdutoController {
         return ResponseEntity.ok(produtos);
     }
 @PostMapping
-    public ResponseEntity<Produto> CadastrarProduto(@RequestBody Produto produto){
-        produtoService.cadastrarProduto(produto);
-        return ResponseEntity.ok(produto);
+    public ResponseEntity<Produto> CadastrarProduto(@RequestBody Produto pd){
+        produtoService.cadastrarProduto(pd);
+        return ResponseEntity.ok(pd);
 
 
 }
-
+@GetMapping("/{id}")
+    public ResponseEntity<Produto> buscarPorId(@PathVariable int id){
+        Produto pd = produtoService.buscarPorId(id);
+        if(pd == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(pd);
+}
 
 }
