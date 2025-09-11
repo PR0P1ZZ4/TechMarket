@@ -26,7 +26,16 @@ public class PedidoService {
         return this.pedidoRepository.save(pd);
     }
 
+    public Pedido buscarPorId(int id) {
+        return this.pedidoRepository.findById(id).orElse(null);
+    }
 
-
-
+    public Pedido deletarPorId(int id) {
+        Pedido pedido = buscarPorId(id);
+        if (pedido != null) {
+            return null;
+        }
+        this.pedidoRepository.deleteById(id);
+        return pedido;
+    }
 }

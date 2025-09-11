@@ -2,12 +2,14 @@ package br.com.Ecommerce.api.controller;
 
 import br.com.Ecommerce.api.model.ItemDoPedido;
 import br.com.Ecommerce.api.service.ItemDoPedidoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
 @RequestMapping("/api/itemdopedido")
+@Tag(name = "Item Do Pedido", description = "Operações relacionadas aos itens de cada pedido")
 public class ItemDoPedidoController {
     private final ItemDoPedidoService itemDoPedidoService;
 
@@ -25,5 +27,23 @@ public ResponseEntity<List<ItemDoPedido>> listarItemDoPedido(){
     public ResponseEntity<ItemDoPedido> cadastrarItemDoPedido(@RequestBody ItemDoPedido itemDoPedido){
         itemDoPedidoService.cadastrarItemDoPedido(itemDoPedido);
         return ResponseEntity.ok(itemDoPedido);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ItemDoPedido> buscarItemDoPedido(@PathVariable Integer id){
+        ItemDoPedido itemDoPedido = itemDoPedidoService.buscarItemDoPedidoPorId(id);
+        if(itemDoPedido == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(itemDoPedido);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> removerItemDoPedido(@PathVariable Integer id){
+        ItemDoPedido itemDoPedido = itemDoPedidoService.deletarItemDoPedidoPorId(id);
+        if (itemDoPedido == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().build();
     }
 }

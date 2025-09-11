@@ -4,6 +4,7 @@ package br.com.Ecommerce.api.controller;
 import br.com.Ecommerce.api.model.Cliente;
 import br.com.Ecommerce.api.model.Produto;
 import br.com.Ecommerce.api.service.ProdutoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/produtos")
-
+@Tag(name = "Produtos", description = "Operações relacionadas a cada produto")
 public class ProdutoController {
     private final ProdutoService produtoService;
 
@@ -47,7 +48,7 @@ public class ProdutoController {
 }
 @DeleteMapping("/{id}")
     public ResponseEntity<Produto> removerProduto(@PathVariable int id){
-        Produto pd = produtoService.buscarPorId(id);
+        Produto pd = produtoService.deletarProdutoPorId(id);
         if(pd == null){
             return ResponseEntity.notFound().build();
         }

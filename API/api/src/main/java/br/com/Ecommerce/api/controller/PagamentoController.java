@@ -3,14 +3,15 @@ package br.com.Ecommerce.api.controller;
 import br.com.Ecommerce.api.model.Pagamento;
 import br.com.Ecommerce.api.service.ClienteService;
 import br.com.Ecommerce.api.service.PagamentoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping
-
+@RequestMapping("/api/pagamento")
+@Tag(name = "Pagamentos", description = "Operações relacionadas aos pagamentos")
 public class PagamentoController {
     private final PagamentoService pagamentoService;
 
@@ -32,5 +33,21 @@ public class PagamentoController {
 
 }
 
+@GetMapping("/{id}")
+    public ResponseEntity<Pagamento> buscarPagamento(@PathVariable int id){
+        Pagamento pg = pagamentoService.buscarPagamentoPorID(id);
+        if(pg==null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(pg);
+}
 
+@DeleteMapping("/{id}")
+    public ResponseEntity<Pagamento> deletarPagamento(@PathVariable int id){
+        Pagamento pg = pagamentoService.deletarPagamento(id);
+        if(pg==null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(pg);
+}
 }

@@ -23,4 +23,17 @@ public class ItemDoPedidoService {
         return this.itemDoPedidoRepository.save(pd);
     }
 
+    public ItemDoPedido buscarItemDoPedidoPorId(int id) {
+        return this.itemDoPedidoRepository.findById(id).orElse(null);
+    }
+
+    public ItemDoPedido deletarItemDoPedidoPorId(int id) {
+        ItemDoPedido itemDoPedido = buscarItemDoPedidoPorId(id);
+        if (itemDoPedido == null) {
+            return null;
+        }
+        itemDoPedidoRepository.delete(itemDoPedido);
+        return itemDoPedido;
+    }
+
 }

@@ -1,6 +1,7 @@
 package br.com.Ecommerce.api.controller;
 
 import br.com.Ecommerce.api.model.Cliente;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,7 @@ import br.com.Ecommerce.api.service.ClienteService;
 import java.util.List;
 @RestController
 @RequestMapping("/api/clientes")
-
+@Tag(name = "Clientes", description = "Operações relacionadas ao cadastro de clientes")
 public class ClienteController {
     // controller - service
     private final ClienteService clienteService;

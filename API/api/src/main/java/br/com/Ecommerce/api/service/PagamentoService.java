@@ -26,6 +26,16 @@ public class PagamentoService {
 
     }
 
+    public Pagamento buscarPagamentoPorID(int id) {
+        return this.pagamentoRepository.findById(id).orElse(null);
+    }
 
-
+    public Pagamento deletarPagamento (int id) {
+        Pagamento pagamento = buscarPagamentoPorID(id);
+        if (pagamento == null) {
+            return null;
+        }
+        pagamentoRepository.delete(pagamento);
+        return pagamento;
+    }
 }
