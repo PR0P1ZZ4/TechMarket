@@ -4,6 +4,7 @@ import br.com.Ecommerce.api.model.Pagamento;
 import br.com.Ecommerce.api.service.ClienteService;
 import br.com.Ecommerce.api.service.PagamentoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,5 +50,15 @@ public class PagamentoController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(pg);
-}
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarPagamento(@PathVariable int id, @RequestBody Pagamento pagamentonovo){
+        Pagamento pg = pagamentoService.atualizarPagamento(id, pagamentonovo);
+        if(pagamentonovo.getId()==null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pagamento não encontrado");
+        }
+
+        return ResponseEntity.ok(pg);
+    }
 }

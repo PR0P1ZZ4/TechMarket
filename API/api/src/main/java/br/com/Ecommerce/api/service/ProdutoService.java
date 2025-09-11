@@ -39,5 +39,19 @@ public Produto deletarProdutoPorId(int id) {
     produtoRepository.delete(pd);
     return pd;
     }
+
+    public Produto atualizarProduto (int id, Produto produtoNovo) {
+        Produto produtoantigo = buscarPorId(id);
+        if (produtoantigo == null) {
+            return null;
+        }
+
+        produtoantigo.setNomeProduto(produtoNovo.getNomeProduto());
+        produtoantigo.setPreco(produtoNovo.getPreco());
+        produtoantigo.setDescricao(produtoNovo.getDescricao());
+        produtoantigo.setImagemUrl(produtoNovo.getImagemUrl());
+        produtoantigo.setEstoqueDisponivel(produtoNovo.getEstoqueDisponivel());
+        return produtoRepository.save(produtoantigo);
+    }
 }
 

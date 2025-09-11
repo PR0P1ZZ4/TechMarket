@@ -5,6 +5,7 @@ import br.com.Ecommerce.api.model.Cliente;
 import br.com.Ecommerce.api.model.Produto;
 import br.com.Ecommerce.api.service.ProdutoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,6 +54,15 @@ public class ProdutoController {
             return ResponseEntity.notFound().build();
         }
     return ResponseEntity.ok(pd);
-}
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarProduto(@PathVariable int id, @RequestBody Produto produtonovo){
+        Produto produtoantigo = produtoService.buscarPorId(id);
+        if(produtoantigo == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(produtoantigo);
+    }
 
 }

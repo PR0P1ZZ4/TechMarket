@@ -38,4 +38,17 @@ public class PedidoService {
         this.pedidoRepository.deleteById(id);
         return pedido;
     }
+
+    public Pedido atualizarPedido(int id, Pedido pedidonovo) {
+
+        Pedido pedidoantigo = buscarPorId(id);
+        if (pedidoantigo != null) {
+            return null;
+        }
+        pedidoantigo.setDataPedido(pedidonovo.getDataPedido());
+        pedidoantigo.setStatus(pedidonovo.getStatus());
+        pedidoantigo.setValorTotal(pedidonovo.getValorTotal());
+        return pedidoRepository.save(pedidoantigo);
+
+    }
 }

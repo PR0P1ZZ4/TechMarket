@@ -3,6 +3,7 @@ package br.com.Ecommerce.api.controller;
 import br.com.Ecommerce.api.model.ItemDoPedido;
 import br.com.Ecommerce.api.service.ItemDoPedidoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,5 +46,17 @@ public ResponseEntity<List<ItemDoPedido>> listarItemDoPedido(){
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{id}")
+
+    public ResponseEntity<?> atualizarItemDoPedidoPorId(@PathVariable int id, @RequestBody ItemDoPedido itemDoPedidoNovo){
+
+        ItemDoPedido itemDoPedidoantigo = itemDoPedidoService.atualizarItemDoPedido(id, itemDoPedidoNovo);
+        if(itemDoPedidoantigo == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(itemDoPedidoantigo);
+
     }
 }

@@ -3,6 +3,7 @@ package br.com.Ecommerce.api.controller;
 import br.com.Ecommerce.api.model.Pedido;
 import br.com.Ecommerce.api.service.PedidoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,5 +48,16 @@ public ResponseEntity<Pedido> salvarPedido(@RequestBody Pedido pedido) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(pedido);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarPedidoPorId(@PathVariable int id, @RequestBody Pedido pedidonovo) {
+
+        Pedido pedidoantigo = pedidoService.atualizarPedido(id,pedidonovo);
+        if (pedidoantigo == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        return ResponseEntity.ok(pedidoantigo);
     }
 }

@@ -36,4 +36,15 @@ public class ItemDoPedidoService {
         return itemDoPedido;
     }
 
+    public ItemDoPedido atualizarItemDoPedido(int id, ItemDoPedido itemDoPedidoantigo) {
+
+        ItemDoPedido itemDoPedido = buscarItemDoPedidoPorId(id);
+        if (itemDoPedidoantigo == null) {
+            return null;
+        }
+        itemDoPedido.setQuantidade(itemDoPedidoantigo.getQuantidade());
+        return  itemDoPedidoRepository.save(itemDoPedido);
+    }
+
+
 }
